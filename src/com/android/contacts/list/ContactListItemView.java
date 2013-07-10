@@ -16,8 +16,6 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.preference.ContactsPreferences;
-
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -84,9 +82,6 @@ public class ContactListItemView extends ViewGroup
     private final int mContactsCountTextColor;
     private final int mTextIndent;
     private Drawable mActivatedBackgroundDrawable;
-
-    // Get the view mode state
-    private int mViewMode;
 
     /**
      * Used with {@link #mLabelView}, specifying the width ratio between label and data.
@@ -198,11 +193,6 @@ public class ContactListItemView extends ViewGroup
     public ContactListItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
-
-        // Begin compact list view stuff
-        ContactsPreferences contactsPreferences = new ContactsPreferences(mContext);
-        mViewMode = contactsPreferences.getViewMode();
-        // End compact list view stuf
 
         // Read all style values
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ContactListItemView);
@@ -419,10 +409,7 @@ public class ContactListItemView extends ViewGroup
         }
 
         // Make sure height is at least the preferred height
-        // mPreferredHeight is buried in the framework. Until I find it, this will do.
-        if(mViewMode == 1) {
-            height = Math.max(height, preferredHeight);
-        }
+        height = Math.max(height, preferredHeight);
 
         // Add the height of the header if visible
         if (mHeaderVisible) {
@@ -632,11 +619,6 @@ public class ContactListItemView extends ViewGroup
                 if (!mKeepVerticalPaddingForPhotoView) {
                     mPhotoViewHeight = 0;
                 }
-            }
-
-            if(mViewMode == 2) {
-                 mPhotoViewWidth = mPhotoViewWidth / 2;
-                 mPhotoViewHeight = mPhotoViewHeight / 2;
             }
 
             mPhotoViewWidthAndHeightAreReady = true;

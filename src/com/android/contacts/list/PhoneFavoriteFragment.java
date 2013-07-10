@@ -498,11 +498,6 @@ public class PhoneFavoriteFragment extends Fragment implements OnItemClickListen
             changed = true;
         }
 
-        if (mAllContactsAdapter.getViewMode() != mContactsPrefs.getViewMode()) {
-            mAllContactsAdapter.setViewMode(mContactsPrefs.getViewMode());
-            changed = true;
-        }
-
         return changed;
     }
 

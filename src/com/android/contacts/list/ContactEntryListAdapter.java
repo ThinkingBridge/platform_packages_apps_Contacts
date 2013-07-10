@@ -55,7 +55,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     private int mDisplayOrder;
     private int mSortOrder;
-    private int mViewMode;
 
     private boolean mDisplayPhotos;
     private boolean mQuickContactEnabled;
@@ -266,14 +265,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setSortOrder(int sortOrder) {
         mSortOrder = sortOrder;
-    }
-
-    public int getViewMode() {
-        return mViewMode;
-    }
-
-    public void setViewMode(int viewMode) {
-        mViewMode = viewMode;
     }
 
     public void setPhotoLoader(ContactPhotoManager photoLoader) {
